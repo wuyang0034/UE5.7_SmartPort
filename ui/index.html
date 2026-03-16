@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>港口数字孪生大屏（UE5 叠加）</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="screen">
+      <header class="topbar glass">
+        <div>
+          <h1>港口数字孪生管控大屏</h1>
+          <p>方案 A：UE5 场景作为背景层，Web UI 叠加业务与控制</p>
+        </div>
+        <div class="topbar-right">
+          <span id="connStatus" class="status-pill disconnected">未连接</span>
+          <button id="connectBtn" class="btn primary">连接后端</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="left-panel glass">
+          <h2>航线与台风</h2>
+          <div class="block">
+            <h3>航线列表</h3>
+            <ul id="routeList" class="list"></ul>
+          </div>
+          <div class="block">
+            <h3>台风路径（简图）</h3>
+            <svg id="typhoonMap" viewBox="0 0 300 180" class="typhoon-map"></svg>
+          </div>
+          <div class="block">
+            <h3>告警信息</h3>
+            <ul id="alarmList" class="list"></ul>
+          </div>
+        </section>
+
+        <section class="center-panel">
+          <div class="ue-layer glass">
+            <div class="ue-header">
+              <h2>UE5 场景背景层</h2>
+              <small>后续可替换为 Pixel Streaming iframe / 视频流</small>
+            </div>
+            <div class="ue-stage" id="ueStage">
+              <div class="watermark">UE5.7 Port Scene Placeholder</div>
+            </div>
+          </div>
+
+          <div class="kpi-row">
+            <article class="kpi glass">
+              <p>在港船舶</p>
+              <h3 id="kpiVessel">0</h3>
+            </article>
+            <article class="kpi glass">
+              <p>今日吞吐（TEU）</p>
+              <h3 id="kpiTeu">0</h3>
+            </article>
+            <article class="kpi glass">
+              <p>在线设备</p>
+              <h3 id="kpiDevice">0</h3>
+            </article>
+            <article class="kpi glass">
+              <p>高优先告警</p>
+              <h3 id="kpiAlarm">0</h3>
+            </article>
+          </div>
+        </section>
+
+        <section class="right-panel glass">
+          <h2>控制中心</h2>
+          <div class="block">
+            <h3>场景演示控制</h3>
+            <div class="btn-grid">
+              <button class="btn" data-scene-cmd="PlayCraneAnim">播放吊机动画</button>
+              <button class="btn" data-scene-cmd="StartVesselIn">船舶进港演示</button>
+              <button class="btn" data-scene-cmd="StormWarningOn">台风预警演示</button>
+              <button class="btn danger" data-scene-cmd="StopAllDemo">停止所有演示</button>
+            </div>
+          </div>
+
+          <div class="block">
+            <h3>硬件控制（示例）</h3>
+            <div class="btn-grid">
+              <button class="btn" data-device-cmd="GateOpen">闸机开启</button>
+              <button class="btn" data-device-cmd="ConveyorStart">皮带机启动</button>
+              <button class="btn" data-device-cmd="LightOn">堆场照明开启</button>
+              <button class="btn danger" data-device-cmd="EmergencyStop">紧急停止</button>
+            </div>
+          </div>
+
+          <div class="block">
+            <h3>集装箱堆场状态</h3>
+            <table>
+              <thead>
+                <tr><th>区域</th><th>占用率</th><th>箱量</th></tr>
+              </thead>
+              <tbody id="yardTable"></tbody>
+            </table>
+          </div>
+
+          <div class="block">
+            <h3>命令执行日志</h3>
+            <ul id="cmdLog" class="list compact"></ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
