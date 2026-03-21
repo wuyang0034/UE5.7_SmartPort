@@ -18,6 +18,8 @@
 如果你当前重点是 **原生 UMG 接入**，请重点看：
 
 - `docs/ue5-umg-native-ai-integration.md`：UMG 原生控件接入专项方案
+- `docs/ue5-cpp-class-list-and-header-naming.md`：C++ 类设计与命名规范
+- `docs/ue5-573-blueprint-node-step-by-step.md`：蓝图逐节点接线说明
 
 如果你想先看整体思路，再看：
 
@@ -30,6 +32,8 @@
 - `backend/PortDigitalTwin.Api/`：.NET 8 最小后端，提供快照、聊天、命令和 WebSocket 广播，并支持对接免费 Ollama 模型。
 - `docs/ue5-port-ai-agent-manual.md`：从 0 到运行的超详细操作说明书。
 - `docs/ue5-umg-native-ai-integration.md`：UE5 原生 UMG 控件接入数据与 AI 的专项实施手册。
+- `docs/ue5-cpp-class-list-and-header-naming.md`：UE5 C++ 类清单与头文件命名建议。
+- `docs/ue5-573-blueprint-node-step-by-step.md`：UE5.7.3 蓝图节点连接顺序说明书（逐节点超详细版）。
 - `docs/ue5-port-ai-agent-solution.md`：免费 AI 智能体接入 + 数字孪生联动总体方案。
 
 ## 快速开始（极简版）
