@@ -13,8 +13,13 @@
 那么请优先阅读：
 
 - `docs/ue5-port-ai-agent-manual.md`：**超详细操作手册（推荐先看）**
+- `docs/ue5-umg-native-ai-integration.md`：**UE5 原生 UMG 接入数据与 AI 的专项手册**
 
-其次再看：
+如果你当前重点是 **原生 UMG 接入**，请重点看：
+
+- `docs/ue5-umg-native-ai-integration.md`：UMG 原生控件接入专项方案
+
+如果你想先看整体思路，再看：
 
 - `docs/ue5-port-ai-agent-solution.md`：总体方案说明
 - `docs/ue5-port-digital-twin-csharp.md`：原始 C# 驱动 + UI 大屏方案说明
@@ -24,6 +29,7 @@
 - `ui/`：可直接运行的前端大屏，含 AI 智能体问答面板、天气卡片、台风路径、告警列表、AI 播报和控制中心。
 - `backend/PortDigitalTwin.Api/`：.NET 8 最小后端，提供快照、聊天、命令和 WebSocket 广播，并支持对接免费 Ollama 模型。
 - `docs/ue5-port-ai-agent-manual.md`：从 0 到运行的超详细操作说明书。
+- `docs/ue5-umg-native-ai-integration.md`：UE5 原生 UMG 控件接入数据与 AI 的专项实施手册。
 - `docs/ue5-port-ai-agent-solution.md`：免费 AI 智能体接入 + 数字孪生联动总体方案。
 
 ## 快速开始（极简版）
