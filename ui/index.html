@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>港口数字孪生大屏（UE5 叠加）</title>
+    <title>港口数字孪生大屏（UE5 + AI 智能体）</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -11,7 +11,7 @@
       <header class="topbar glass">
         <div>
           <h1>港口数字孪生管控大屏</h1>
-          <p>方案 A：UE5 场景作为背景层，Web UI 叠加业务与控制</p>
+          <p>UE5.7 场景 + 免费 AI 智能体 + 天气/台风/港口模拟数据联动</p>
         </div>
         <div class="topbar-right">
           <span id="connStatus" class="status-pill disconnected">未连接</span>
@@ -21,7 +21,16 @@
 
       <main class="layout">
         <section class="left-panel glass">
-          <h2>航线与台风</h2>
+          <h2>航线与气象态势</h2>
+          <div class="block weather-card">
+            <h3>实时天气</h3>
+            <div class="weather-grid">
+              <div><span>天气</span><b id="weatherCondition">多云</b></div>
+              <div><span>风速</span><b id="weatherWind">0 m/s</b></div>
+              <div><span>降雨</span><b id="weatherRain">0 mm</b></div>
+              <div><span>能见度</span><b id="weatherVisibility">0 km</b></div>
+            </div>
+          </div>
           <div class="block">
             <h3>航线列表</h3>
             <ul id="routeList" class="list"></ul>
@@ -40,10 +49,11 @@
           <div class="ue-layer glass">
             <div class="ue-header">
               <h2>UE5 场景背景层</h2>
-              <small>后续可替换为 Pixel Streaming iframe / 视频流</small>
+              <small>可替换为 Pixel Streaming iframe / 视频流 / UMG 贴嵌 WebView</small>
             </div>
             <div class="ue-stage" id="ueStage">
               <div class="watermark">UE5.7 Port Scene Placeholder</div>
+              <div class="broadcast-banner" id="broadcastBanner">等待智能播报...</div>
             </div>
           </div>
 
@@ -65,6 +75,22 @@
               <h3 id="kpiAlarm">0</h3>
             </article>
           </div>
+
+          <section class="agent-panel glass">
+            <div class="agent-header">
+              <div>
+                <h2>AI 智能体值班席</h2>
+                <small>支持问答、播报与突发事件处置建议</small>
+              </div>
+              <div id="agentProvider" class="status-chip">Fallback</div>
+            </div>
+            <div class="suggestion-row" id="suggestionRow"></div>
+            <div class="chat-log" id="chatLog"></div>
+            <form id="chatForm" class="chat-form">
+              <textarea id="chatInput" rows="3" placeholder="例如：当前台风风险如何？是否要停止岸桥作业？"></textarea>
+              <button type="submit" class="btn primary">发送给智能体</button>
+            </form>
+          </section>
         </section>
 
         <section class="right-panel glass">
@@ -87,6 +113,11 @@
               <button class="btn" data-device-cmd="LightOn">堆场照明开启</button>
               <button class="btn danger" data-device-cmd="EmergencyStop">紧急停止</button>
             </div>
+          </div>
+
+          <div class="block">
+            <h3>AI 智能播报</h3>
+            <ul id="broadcastList" class="list compact"></ul>
           </div>
 
           <div class="block">
